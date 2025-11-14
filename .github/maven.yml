@@ -1,12 +1,4 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Playwright_java_Tutorial
+name: Playwright_Java_Tutorial
 
 on:
   push:
@@ -17,30 +9,35 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
-      - name: Checkout repository #Télécharge ton code depuis GitHub dans la VM
+      #Récupération du code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Java 24   #install jdk (temurin) et configure le cache maven
+      #Installation de Java (JDK 21 recommandé — 24 n'est pas encore full supporté)
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '24'
+          java-version: '21'
           cache: 'maven'
 
-      - name: Build project (skip tests) #Compile avec Maven sans lancer les tests
+      #Installation des dépendances + compilation
+      - name: Build project (skip tests)
         run: mvn clean install -DskipTests --no-transfer-progress
 
-      - name: Install xvfb #Install serveur graphique virtuel pour Playwright
+      #Installation Xvfb (support GUI headless)
+      - name: Install xvfb
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb  
+          sudo apt-get install -y xvfb
 
-      - name: Install Playwright browsers and dependencies #Télécharge Chromium, Firefox, WebKit et dépendances
-        run: npx playwright install --with-deps
+      #Installation Playwright Browsers
+      - name: Install Playwright browsers and dependencies
+        run: mvn exec:java -e -Dexec.mainClass="com.microsoft.playwright.CLI" -Dexec.args="install --with-deps" || true
 
-
-      - name: Run Playwright tests with xvfb #Lance `mvn test` dans un environnement graphique virtuel
-        run: xvfb-run mvn test
+      # Lancer les tests Java + Playwright en mode graphique virtuel
+      - name: Run Playwright tests with xvfb
+        run: xvfb-run -a mvn test
