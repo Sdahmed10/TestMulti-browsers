@@ -36,7 +36,7 @@ public class TestMultiBrowsers {
 
         // Lance le navigateur en mode non-headless avec ralentissement de 500ms (pour visualiser les actions)
 
-        browser1 = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(500));
+        browser1 = browserType.launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(500));
 
         // Ouvre une nouvelle page
         page = browser1.newPage();
