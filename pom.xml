@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>Playwright_Java_Tutorial</artifactId>
+  <artifactId>Multi_Browsers_Playwright</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
