@@ -40,11 +40,11 @@ jobs:
       # Lancer les tests Java + Playwright en mode graphique virtuel
       - name: Run Playwright tests with xvfb
         run: xvfb-run -a mvn test
-          
-          # Upload test reports on failure
-               - name: Upload test reports
-               if: failure()
-               uses: actions/upload-artifact@v4
-               with:
-                 name: surefire-reports
-                 path: target/surefire-reports/
+
+      # Upload test reports on failure
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
