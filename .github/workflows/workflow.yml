@@ -22,7 +22,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-          cache: 'maven'
 
       #Installation des dépendances + compilation
       - name: Build project (skip tests)
