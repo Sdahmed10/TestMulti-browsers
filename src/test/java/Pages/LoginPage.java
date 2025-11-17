@@ -24,28 +24,27 @@ public class LoginPage {
     public Page page;
 
     // TestNG permettra d'exécuter cette méthode comme un test si appelée directement
-        @Test
-        public void loginTest() {
-            // Ouvrir la page de connexion
-            page.navigate(LOGIN_URL);
-            System.out.println("Title of the page: " + page.title());
+    @Test
+    public void loginTest() {
+        // Ouvrir la page de connexion
+        page.navigate(LOGIN_URL);
+        System.out.println("Title of the page: " + page.title());
 
-            // Remplir les champs email et mot de passe
-            page.fill(EMAIL_FIELD, EMAIL);
-            page.fill(PASSWORD_FIELD, PASSWORD);
+        // Remplir les champs email et mot de passe
+        page.fill(EMAIL_FIELD, EMAIL);
+        page.fill(PASSWORD_FIELD, PASSWORD);
 
-            // Cliquer sur le bouton "Sign in"
-            page.click(SIGN_IN_BUTTON);
+        // Cliquer sur le bouton "Sign in"
+        page.click(SIGN_IN_BUTTON);
 
-            // Attendre que le bouton "Cart" apparaisse → signe d’une connexion réussie
-            page.waitForSelector(SUCCESS_LOGIN_BUTTON);
+        // Attendre que le bouton "Cart" apparaisse → signe d’une connexion réussie
+        page.waitForSelector(SUCCESS_LOGIN_BUTTON);
 
-            // Vérifier si le bouton "Cart" est visible
-            if (page.locator(SUCCESS_LOGIN_BUTTON).isVisible()) {
-                System.out.println("Login successful!");
-            } else {
-                System.out.println("Login failed!");
-            }
+        // Vérifier si le bouton "Cart" est visible
+        if (page.locator(SUCCESS_LOGIN_BUTTON).isVisible()) {
+            System.out.println("Login successful!");
+        } else {
+            System.out.println("Login failed!");
         }
     }
-
+}
