@@ -34,17 +34,26 @@ jobs:
           sudo apt-get install -y xvfb
 
       #Installation Playwright Browsers
-      - name: Install Playwright browsers and dependencies
-        run: mvn exec:java -e -Dexec.mainClass="com.microsoft.playwright.CLI" -Dexec.args="install --with-deps" || true
+      - name: Install Playwright browsers
+        run: mvn playwright:install
 
       # Lancer les tests Java + Playwright en mode graphique virtuel
-      - name: Run Playwright tests with xvfb
-        run: xvfb-run -a mvn test
+      - name: Run Playwright tests
+        run: mvn test
 
       # Upload test reports on failure
-      - name: Upload test reports
+      - name: Upload ExtentReports
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: surefire-reports
-          path: target/surefire-reports/
+          name: extent-reports
+          path: target/extent-reports/
+
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+           ${{ runner.os }}-maven-
+
