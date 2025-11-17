@@ -5,7 +5,7 @@
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="BaseTest.TestMultiBrowsers"/>
-<!--            <class name="Tests.LoginTest"/>-->
+            <class name="Tests.LoginTest"/>
             <class name="Tests.HomePageTest"/>
         </classes>
     </test>
@@ -14,7 +14,7 @@
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="BaseTest.TestMultiBrowsers"/>
-<!--            <class name="Tests.LoginTest"/>-->
+            <class name="Tests.LoginTest"/>
             <class name="Tests.HomePageTest"/>
         </classes>
     </test>
@@ -23,7 +23,7 @@
         <parameter name="browser" value="safari"/>
         <classes>
             <class name="BaseTest.TestMultiBrowsers"/>
-<!--            <class name="Tests.LoginTest"/>-->
+            <class name="Tests.LoginTest"/>
             <class name="Tests.HomePageTest"/>
         </classes>
     </test>
