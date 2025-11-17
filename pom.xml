@@ -61,20 +61,6 @@
           </suiteXmlFiles>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>com.microsoft.playwright</groupId>
-        <artifactId>playwright</artifactId>
-        <version>1.56.0</version> <!-- Assure-toi que ça correspond à ta version Playwright -->
-        <executions>
-          <execution>
-            <goals>
-              <goal>install</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
     </plugins>
   </build>
 </project>
